@@ -6,21 +6,22 @@ public class WaterMinion {
 	
 	private double x;
 	private double y;
-	
+	private World world;
 	Water image;
 	
-	public WaterMinion(double x, double y,WarGame game) {
+	public WaterMinion(double x, double y,GameScreen game,World world) {
 		this.x = x;
 		this.y = y;
-		
-		image = World.Water(10,70);
+		this.world = world;
+		image = world.getWater();
 	}
 	
 	public void tick() {
 		x += 10;
 	}
-
+	
+/*
 	public void render(Graphics g) {
-		g.drawImage(image,(int)x,(int)y,null);
-	}
+		//g.drawImage(image,(int)x,(int)y,null);
+	}*/
 }

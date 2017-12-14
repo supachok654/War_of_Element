@@ -15,18 +15,24 @@ public class GameScreen extends ScreenAdapter {
 	public Texture Background;
 	public Texture waterImg;
 	public Texture fireImg;
+	public Texture bulletImg;
 	private Water water;
 	private Fire fire;
-	private World world;
+	public World world;
+	private LinkWaterMinion w;
+	private Bullet bullet;
 	
 	public GameScreen(WarGame warofelementsGame) {
 		this.warofelementsGame = warofelementsGame;
 		waterImg = new Texture("pacman.png");
 		fireImg = new Texture("pacman.png");
+		bulletImg = new Texture("pacman.png");
 		world = new World(warofelementsGame);
 		water = world.getWater();
 		fire = world.getFire();
 		Background = new Texture("background.jpg");
+		bullet = new Bullet(world.getWater().getPosition().x,world.getWater().getPosition().y);
+		//w = new LinkWaterMinion(this);
 		//Background = new Texture(Gdx.files.internal("background.jpg"));
 	}
 	@Override
@@ -39,10 +45,11 @@ public class GameScreen extends ScreenAdapter {
         Vector2 pos_fire = fire.getPosition();
         batch.draw(waterImg, pos_water.x, pos_water.y);
         batch.draw(fireImg, pos_fire.x, pos_fire.y);
-        
+        batch.draw(bulletImg,bullet.getPosition().x,bullet.getPosition().y);
         batch.end();
     }
 	private void update(float delta) {
+		bullet.update();
 		if(Gdx.input.isKeyJustPressed(Keys.W)){
 			
 			water.moveUp();
