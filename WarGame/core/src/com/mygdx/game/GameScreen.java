@@ -33,7 +33,7 @@ public class GameScreen extends ScreenAdapter {
 		fire = world.getFire();
 		Background = new Texture("background.jpg");
 		waterMinion = new WaterMinion(water);
-		fireMinion = new FireMinion(world.getFire().getPosition().x,world.getFire().getPosition().y);
+		fireMinion = new FireMinion(fire);
 		//w = new LinkWaterMinion(this);
 		//Background = new Texture(Gdx.files.internal("background.jpg"));
 	}
@@ -78,9 +78,10 @@ public class GameScreen extends ScreenAdapter {
 		}
 		if(Gdx.input.isKeyJustPressed(Keys.LEFT)) {
 			
-			fireMinion.update();
+			fireMinion.setCheck(1);
 		}
 		waterMinion.update();
+		fireMinion.update();
 		/*if(Gdx.input.isKeyJustPressed(Keys.D)) {
 			check =1;
 		}*/
