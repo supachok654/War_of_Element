@@ -24,6 +24,7 @@ public class GameScreen extends ScreenAdapter {
 	private WaterMinion waterMinion;
 	private FireMinion fireMinion;
 	private List<WaterMinion> waterList;
+	private List<FireMinion> fireList;
 	//private LinkWaterMinion<> linkWaterMinion;
 	
 	public GameScreen(WarGame warofelementsGame) {
@@ -36,9 +37,12 @@ public class GameScreen extends ScreenAdapter {
 		fire = world.getFire();
 		Background = new Texture("background.jpg");
 		waterMinion = new WaterMinion(water);
+		fireMinion = new FireMinion(fire);
 		waterList = new ArrayList();
 		waterList.add(waterMinion);
-		fireMinion = new FireMinion(fire);
+		fireList = new ArrayList();
+		fireList.add(fireMinion);
+		
 		//w = new LinkWaterMinion(this);
 		//Background = new Texture(Gdx.files.internal("background.jpg"));
 	}
@@ -52,9 +56,12 @@ public class GameScreen extends ScreenAdapter {
         Vector2 pos_fire = fire.getPosition();
         batch.draw(waterImg, pos_water.x, pos_water.y);
         batch.draw(fireImg, pos_fire.x, pos_fire.y);
-        for(int i  =0;i<waterList.size();i++)
+        for(int i=0;i<waterList.size();i++) {
         	batch.draw(bulletImg,waterList.get(i).getPosition().x,waterList.get(i).getPosition().y);
-        batch.draw(bulletImg,fireMinion.getPosition().x,fireMinion.getPosition().y);
+        }
+        for(int i=0;i<fireList.size();i++) {
+        	batch.draw(bulletImg,fireList.get(i).getPosition().x,fireList.get(i).getPosition().y);
+        }
         batch.end();
     }
 	private void update(float delta) {
@@ -86,15 +93,22 @@ public class GameScreen extends ScreenAdapter {
 		}
 		if(Gdx.input.isKeyJustPressed(Keys.LEFT)) {
 			
-			fireMinion.setCheck(1);
+			fireList.get(fireList.size()-1).setCheck(1);
+			fireList.add(new FireMinion(fire));
 		}
-		for(int i  =0;i<waterList.size();i++) {
+		for(int i=0;i<waterList.size();i++) {
 			waterList.get(i).update();
 			if(waterList.get(i).getPosition().x>1280) {
 				waterList.remove(i);
 			}
 		}
-		fireMinion.update();
+		for(int i=0;i<fireList.size();i++) {
+			fireList.get(i).update();
+			if(fireList.get(i).getPosition().x<0) {
+				fireList.remove(i);
+			}
+		}
+		//fireMinion.update();
 		System.out.println(waterList.size());
 		/*if(Gdx.input.isKeyJustPressed(Keys.D)) {
 			check =1;
