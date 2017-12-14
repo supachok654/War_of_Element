@@ -1,5 +1,7 @@
 package com.mygdx.game;
 
+import java.nio.file.attribute.PosixFileAttributes;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.Vector2;
@@ -14,13 +16,8 @@ public class FireMinion {
 		return pos;
 	}
 	public void update() {
-		if(check == 1) {
+		 ) 
 			pos.x-=10;
-		}
-			
-		if(Gdx.input.isKeyJustPressed(Keys.LEFT)) {
-			check =1;
-		}
 	}
 }
 

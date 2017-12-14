@@ -32,7 +32,7 @@ public class GameScreen extends ScreenAdapter {
 		water = world.getWater();
 		fire = world.getFire();
 		Background = new Texture("background.jpg");
-		waterMinion = new WaterMinion(world.getWater().getPosition().x,world.getWater().getPosition().y);
+		waterMinion = new WaterMinion(water);
 		fireMinion = new FireMinion(world.getFire().getPosition().x,world.getFire().getPosition().y);
 		//w = new LinkWaterMinion(this);
 		//Background = new Texture(Gdx.files.internal("background.jpg"));
@@ -52,7 +52,8 @@ public class GameScreen extends ScreenAdapter {
         batch.end();
     }
 	private void update(float delta) {
-		waterMinion.update();
+		
+		
 		if(Gdx.input.isKeyJustPressed(Keys.W)){
 			
 			water.moveUp();
@@ -71,6 +72,18 @@ public class GameScreen extends ScreenAdapter {
 			
 			fire.moveDown();
 		}
+		if(Gdx.input.isKeyJustPressed(Keys.D)) {
+			
+			waterMinion.setCheck(1);
+		}
+		if(Gdx.input.isKeyJustPressed(Keys.LEFT)) {
+			
+			fireMinion.update();
+		}
+		waterMinion.update();
+		/*if(Gdx.input.isKeyJustPressed(Keys.D)) {
+			check =1;
+		}*/
 	}
 }
 
