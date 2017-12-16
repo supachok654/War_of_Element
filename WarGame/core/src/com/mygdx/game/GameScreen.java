@@ -3,6 +3,7 @@ package com.mygdx.game;
 import java.awt.RenderingHints.Key;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
@@ -31,8 +32,14 @@ public class GameScreen extends ScreenAdapter {
 	private FireMinion fireMinion;
 	private BigWaterMinion bigwaterMinion;
 	private BigFireMinion bigfireMinion;
+	private UltraWaterMinion ultrawaterMinion;
+	private UltraFireMinion ultrafireMinion;
 	private List<WaterMinion> waterList;
 	private List<FireMinion> fireList;
+	private List<BigWaterMinion> bigwaterList;
+	private List<BigFireMinion> bigfireList;
+	private List<UltraWaterMinion> ultrawaterList;
+	private List<UltraFireMinion> ultrafireList;
 	//private LinkWaterMinion<> linkWaterMinion;
 	private BitmapFont font;
 	public GameScreen(WarGame warofelementsGame) {
@@ -52,9 +59,21 @@ public class GameScreen extends ScreenAdapter {
 		waterMinion = new WaterMinion(water);
 		fireMinion = new FireMinion(fire);
 		waterList = new ArrayList();
-		waterList.add(waterMinion);
+		//waterList.add(waterMinion);
 		fireList = new ArrayList();
-		fireList.add(fireMinion);
+		//fireList.add(fireMinion);
+		bigwaterMinion = new BigWaterMinion(water);
+		bigfireMinion = new BigFireMinion(fire);
+		bigwaterList = new ArrayList();
+		//bigwaterList.add(bigwaterMinion);
+		bigfireList = new ArrayList();
+		//bigfireList.add(bigfireMinion);
+		ultrawaterMinion = new UltraWaterMinion(water);
+		ultrafireMinion = new UltraFireMinion(fire);
+		ultrawaterList = new ArrayList();
+		//ultrawaterList.add(ultrawaterMinion);
+		ultrafireList = new ArrayList();
+		//ultrafireList.add(ultrafireMinion);
 		font = new BitmapFont();
 		
 		//w = new LinkWaterMinion(this);
@@ -77,6 +96,18 @@ public class GameScreen extends ScreenAdapter {
         }
         for(int i=0;i<fireList.size();i++) {
         	batch.draw(fireminionImg,fireList.get(i).getPosition().x,fireList.get(i).getPosition().y);
+        }
+        for(int i=0;i<bigwaterList.size();i++) {
+        	batch.draw(bigwaterminionImg,waterList.get(i).getPosition().x,waterList.get(i).getPosition().y);
+        }
+        for(int i=0;i<bigfireList.size();i++) {
+        	batch.draw(bigfireminionImg,fireList.get(i).getPosition().x,fireList.get(i).getPosition().y);
+        }
+        for(int i=0;i<ultrawaterList.size();i++) {
+        	batch.draw(ultrawaterminionImg,waterList.get(i).getPosition().x,waterList.get(i).getPosition().y);
+        }
+        for(int i=0;i<ultrafireList.size();i++) {
+        	batch.draw(ultrafireminionImg,fireList.get(i).getPosition().x,fireList.get(i).getPosition().y);
         }
         batch.end();
     }
@@ -102,15 +133,43 @@ public class GameScreen extends ScreenAdapter {
 			fire.moveDown();
 		}
 		if(Gdx.input.isKeyJustPressed(Keys.D)) {
-			
-			waterList.get(waterList.size()-1).setCheck(1);
-			waterList.add(new WaterMinion(water));
+			int randomNum_1 = ThreadLocalRandom.current().nextInt(1,8);
+			System.out.println(randomNum_1);
+			/*if(randomNum_1 < 4) {
+				waterList.add(new WaterMinion(water));
+				waterList.get(waterList.size()-1).setCheck(1);
+				
+			}
+			else if(randomNum_1 < 7) {
+				bigwaterList.add(new BigWaterMinion(water));
+				bigwaterList.get(bigwaterList.size()-1).setCheck(1);
+				
+			}
+			else {
+				ultrawaterList.add(new UltraWaterMinion(water));
+				ultrawaterList.get(ultrawaterList.size()-1).setCheck(1);
+				
+			}*/
 			
 		}
 		if(Gdx.input.isKeyJustPressed(Keys.LEFT)) {
 			
-			fireList.get(fireList.size()-1).setCheck(1);
-			fireList.add(new FireMinion(fire));
+			int randomNum_2 = ThreadLocalRandom.current().nextInt(1,8);
+			/*if(randomNum_2 < 4) {
+				fireList.add(new FireMinion(fire));
+				fireList.get(fireList.size()-1).setCheck(1);
+				
+			}
+			else if(randomNum_2 < 7) {
+				bigfireList.add(new BigFireMinion(fire));
+				bigfireList.get(bigfireList.size()-1).setCheck(1);
+				
+			}
+			else {
+				ultrafireList.add(new UltraFireMinion(fire));
+				ultrafireList.get(ultrafireList.size()-1).setCheck(1);
+				
+			}*/
 		}
 		for(int i=0;i<waterList.size();i++) {
 			waterList.get(i).update();
@@ -128,6 +187,38 @@ public class GameScreen extends ScreenAdapter {
 				
 			}
 		}
+		for(int i=0;i<bigwaterList.size();i++) {
+			bigwaterList.get(i).update();
+			if(bigwaterList.get(i).getPosition().x>1280) {
+				bigwaterList.remove(i);
+				world.waterscore++;
+			
+			}
+		}
+		for(int i=0;i<bigfireList.size();i++) {
+			bigfireList.get(i).update();
+			if(bigfireList.get(i).getPosition().x<0) {
+				bigfireList.remove(i);
+				world.firescore++;
+				
+			}
+		}
+		for(int i=0;i<ultrawaterList.size();i++) {
+			ultrawaterList.get(i).update();
+			if(ultrawaterList.get(i).getPosition().x>1280) {
+				ultrawaterList.remove(i);
+				world.waterscore++;
+			
+			}
+		}
+		for(int i=0;i<ultrafireList.size();i++) {
+			ultrafireList.get(i).update();
+			if(ultrafireList.get(i).getPosition().x<0) {
+				ultrafireList.remove(i);
+				world.firescore++;
+				
+			}
+		}
 		//fireMinion.update();
 		//System.out.println(waterList.size());
 		//System.out.println(waterScore);
@@ -137,4 +228,3 @@ public class GameScreen extends ScreenAdapter {
 		}*/
 	}
 }
-
