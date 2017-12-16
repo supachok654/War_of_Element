@@ -8,6 +8,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
@@ -26,7 +27,7 @@ public class GameScreen extends ScreenAdapter {
 	private List<WaterMinion> waterList;
 	private List<FireMinion> fireList;
 	//private LinkWaterMinion<> linkWaterMinion;
-	
+	private BitmapFont font;
 	public GameScreen(WarGame warofelementsGame) {
 		this.warofelementsGame = warofelementsGame;
 		waterImg = new Texture("pacman.png");
@@ -42,6 +43,7 @@ public class GameScreen extends ScreenAdapter {
 		waterList.add(waterMinion);
 		fireList = new ArrayList();
 		fireList.add(fireMinion);
+		font = new BitmapFont();
 		
 		//w = new LinkWaterMinion(this);
 		//Background = new Texture(Gdx.files.internal("background.jpg"));
@@ -56,6 +58,8 @@ public class GameScreen extends ScreenAdapter {
         Vector2 pos_fire = fire.getPosition();
         batch.draw(waterImg, pos_water.x, pos_water.y);
         batch.draw(fireImg, pos_fire.x, pos_fire.y);
+        font.draw(batch,"WATER : " + world.getWaterScore(),300,770);
+        font.draw(batch,"FIRE : " + world.getFireScore(),960,770);
         for(int i=0;i<waterList.size();i++) {
         	batch.draw(bulletImg,waterList.get(i).getPosition().x,waterList.get(i).getPosition().y);
         }
@@ -100,16 +104,22 @@ public class GameScreen extends ScreenAdapter {
 			waterList.get(i).update();
 			if(waterList.get(i).getPosition().x>1280) {
 				waterList.remove(i);
+				world.waterscore++;
+			
 			}
 		}
 		for(int i=0;i<fireList.size();i++) {
 			fireList.get(i).update();
 			if(fireList.get(i).getPosition().x<0) {
 				fireList.remove(i);
+				world.firescore++;
+				
 			}
 		}
 		//fireMinion.update();
-		System.out.println(waterList.size());
+		//System.out.println(waterList.size());
+		//System.out.println(waterScore);
+		//System.out.println(fireScore);
 		/*if(Gdx.input.isKeyJustPressed(Keys.D)) {
 			check =1;
 		}*/
