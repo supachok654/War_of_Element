@@ -18,12 +18,19 @@ public class GameScreen extends ScreenAdapter {
 	public Texture Background;
 	public Texture waterImg;
 	public Texture fireImg;
-	public Texture bulletImg;
+	public Texture waterminionImg;
+	public Texture fireminionImg;
+	public Texture bigwaterminionImg;
+	public Texture bigfireminionImg;
+	public Texture ultrawaterminionImg;
+	public Texture ultrafireminionImg;
 	private Water water;
 	private Fire fire;
 	public World world;
 	private WaterMinion waterMinion;
 	private FireMinion fireMinion;
+	private BigWaterMinion bigwaterMinion;
+	private BigFireMinion bigfireMinion;
 	private List<WaterMinion> waterList;
 	private List<FireMinion> fireList;
 	//private LinkWaterMinion<> linkWaterMinion;
@@ -32,7 +39,12 @@ public class GameScreen extends ScreenAdapter {
 		this.warofelementsGame = warofelementsGame;
 		waterImg = new Texture("pacman.png");
 		fireImg = new Texture("pacman.png");
-		bulletImg = new Texture("pacman.png");
+		waterminionImg = new Texture("pacman.png");
+		fireminionImg = new Texture("pacman.png");
+		bigwaterminionImg = new Texture("bigpacman.png");
+		bigfireminionImg = new Texture("bigpacman.png");
+		ultrawaterminionImg = new Texture("extrapacman.png");
+		ultrafireminionImg = new Texture("extrapacman.png");
 		world = new World(warofelementsGame);
 		water = world.getWater();
 		fire = world.getFire();
@@ -61,10 +73,10 @@ public class GameScreen extends ScreenAdapter {
         font.draw(batch,"WATER : " + world.getWaterScore(),300,770);
         font.draw(batch,"FIRE : " + world.getFireScore(),960,770);
         for(int i=0;i<waterList.size();i++) {
-        	batch.draw(bulletImg,waterList.get(i).getPosition().x,waterList.get(i).getPosition().y);
+        	batch.draw(waterminionImg,waterList.get(i).getPosition().x,waterList.get(i).getPosition().y);
         }
         for(int i=0;i<fireList.size();i++) {
-        	batch.draw(bulletImg,fireList.get(i).getPosition().x,fireList.get(i).getPosition().y);
+        	batch.draw(fireminionImg,fireList.get(i).getPosition().x,fireList.get(i).getPosition().y);
         }
         batch.end();
     }

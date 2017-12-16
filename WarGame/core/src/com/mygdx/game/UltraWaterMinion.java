@@ -5,11 +5,11 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
-public class WaterMinion {
+public class UltraWaterMinion {
 	private Vector2 pos;
 	private int  check = 0;
 	private Water water;
-	public WaterMinion(Water water) {
+	public UltraWaterMinion(Water water) {
 		this.water = water;
 		pos = new Vector2(water.getPosition().x,water.getPosition().y);
 	}
@@ -21,7 +21,7 @@ public class WaterMinion {
 	}
 	public void update() {
 		if(check == 1) {
-			pos.x+=10;
+			pos.x+=1;
 		}
 		else
 			pos.y =  water.getPosition().y;

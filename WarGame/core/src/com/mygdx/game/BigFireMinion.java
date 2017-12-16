@@ -5,13 +5,13 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
-public class WaterMinion {
+public class BigFireMinion {
 	private Vector2 pos;
 	private int  check = 0;
-	private Water water;
-	public WaterMinion(Water water) {
-		this.water = water;
-		pos = new Vector2(water.getPosition().x,water.getPosition().y);
+	private Fire fire;
+	public BigFireMinion(Fire fire) {
+		this.fire = fire;
+		pos = new Vector2(fire.getPosition().x,fire.getPosition().y);
 	}
 	public Vector2 getPosition() {
 		return pos;
@@ -20,11 +20,10 @@ public class WaterMinion {
 		check = x;
 	}
 	public void update() {
-		if(check == 1) {
-			pos.x+=10;
-		}
+		if(check == 1)
+			pos.x-=5;
 		else
-			pos.y =  water.getPosition().y;
+			pos.y =  fire.getPosition().y;
 			
 		/*if(Gdx.input.isKeyJustPressed(Keys.D)) {
 			check =1;
