@@ -8,10 +8,14 @@ import com.badlogic.gdx.math.Vector2;
 public class WaterMinion {
 	private Vector2 pos;
 	private int  check = 0;
+	private int speed;
 	private Water water;
-	public WaterMinion(Water water) {
+	public WaterMinion(Water water,int level) {
 		this.water = water;
 		pos = new Vector2(water.getPosition().x,water.getPosition().y);
+		if(level == 1) speed = 10;
+		else if(level == 2) speed = 15;
+		else if(level == 3) speed = 20;
 	}
 	public Vector2 getPosition() {
 		return pos;
@@ -21,7 +25,7 @@ public class WaterMinion {
 	}
 	public void update() {
 		if(check == 1) {
-			pos.x+=10;
+			pos.x+=speed;
 		}
 		else
 			pos.y =  water.getPosition().y;
