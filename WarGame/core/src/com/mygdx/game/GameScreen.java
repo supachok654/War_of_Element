@@ -67,7 +67,7 @@ public class GameScreen extends ScreenAdapter {
 		waterlistImg = new ArrayList();
 		waterlistImg.add(new Texture("pacman.png"));
 		firelistImg.add(new Texture("pacman.png"));
-		//rand = new Random();
+		rand = new Random();
 		//w = new LinkWaterMinion(this);
 		//Background = new Texture(Gdx.files.internal("background.jpg"));
 	}
@@ -85,9 +85,11 @@ public class GameScreen extends ScreenAdapter {
         font.draw(batch,"FIRE : " + world.getFireScore(),960,770);
         for(int i=0;i<waterlistImg.size();i++) {
         	batch.draw(waterlistImg.get(i),waterList.get(i).getPosition().x,waterList.get(i).getPosition().y);
+        	batch.draw(waterlistImg.get(i),150,750);
         }
         for(int i=0;i<firelistImg.size();i++) {
         	batch.draw(firelistImg.get(i),fireList.get(i).getPosition().x,fireList.get(i).getPosition().y);
+        	batch.draw(firelistImg.get(i),1100,750);
         }
         batch.end();
     }
