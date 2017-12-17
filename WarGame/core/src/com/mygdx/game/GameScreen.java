@@ -45,10 +45,10 @@ public class GameScreen extends ScreenAdapter {
 	private BitmapFont font;
 	public GameScreen(WarGame warofelementsGame) {
 		this.warofelementsGame = warofelementsGame;
-		waterImg = new Texture("gokublue3.png");
-		fireImg = new Texture("gokured3.png");
-		waterminionImg = new Texture("gokublue1.png");
-		fireminionImg = new Texture("gokured1.png");
+		waterImg = new Texture("Water.png");
+		fireImg = new Texture("Fire.png");
+		waterminionImg = new Texture("WaterMinion1.png");
+		fireminionImg = new Texture("FireMinion1.png");
 		world = new World(warofelementsGame);
 		water = world.getWater();
 		fire = world.getFire();
@@ -63,8 +63,8 @@ public class GameScreen extends ScreenAdapter {
 		firelistImg = new ArrayList();
 		waterlistImg = new ArrayList();
 		//rectangleList = new ArrayList();
-		waterlistImg.add(new Texture("gokublue1.png"));
-		firelistImg.add(new Texture("gokured1.png"));
+		waterlistImg.add(new Texture("WaterMinion1.png"));
+		firelistImg.add(new Texture("FireMinion1.png"));
 		rand = new Random();
 		//w = new LinkWaterMinion(this);
 		//Background = new Texture(Gdx.files.internal("background.jpg"));
@@ -131,11 +131,11 @@ public class GameScreen extends ScreenAdapter {
 			waterList.get(waterList.size()-1).setCheck(1);
 			waterList.add(new WaterMinion(water,tmp));
 			if(tmp <= 4)
-				waterlistImg.add(new Texture("gokublue1.png"));
+				waterlistImg.add(new Texture("WaterMinion1.png"));
 			else if(tmp <= 7)
-				waterlistImg.add(new Texture("gokublue2.png"));
+				waterlistImg.add(new Texture("WaterMinion2.png"));
 			else if(tmp == 8)
-				waterlistImg.add(new Texture("ball.png"));
+				waterlistImg.add(new Texture("WaterBall.png"));
 			//int randomNum_1 = ThreadLocalRandom.current().nextInt(1,8);
 			//System.out.println(randomNum_1);
 			/*if(randomNum_1 < 4) {
@@ -162,11 +162,11 @@ public class GameScreen extends ScreenAdapter {
 			fireList.get(fireList.size()-1).setCheck(1);
 			fireList.add(new FireMinion(fire,tmp));
 			if(tmp <= 4)
-				firelistImg.add(new Texture("gokured1.png"));
+				firelistImg.add(new Texture("FireMinion1.png"));
 			else if(tmp <= 7)
-				firelistImg.add(new Texture("gokured2.png"));
+				firelistImg.add(new Texture("FireMinion2.png"));
 			else if(tmp == 8)
-				firelistImg.add(new Texture("ball.png"));
+				firelistImg.add(new Texture("FireBall.png"));
 			//int randomNum_2 = ThreadLocalRandom.current().nextInt(1,8);
 			/*if(randomNum_2 < 4) {
 				fireList.add(new FireMinion(fire));
@@ -190,8 +190,12 @@ public class GameScreen extends ScreenAdapter {
 				waterList.remove(i);
 				waterlistImg.remove(i);
 				world.waterscore++;
-			
 			}
+			/*if(waterList.get(i).getPosition().x<0) {
+				waterList.remove(i);
+				waterlistImg.remove(i);
+				world.firescore++;
+			}*/
 		}
 		for(int i=0;i<fireList.size();i++) {
 			fireList.get(i).update();
@@ -201,6 +205,11 @@ public class GameScreen extends ScreenAdapter {
 				world.firescore++;
 				
 			}
+			/*if(fireList.get(i).getPosition().x>1280) {
+				fireList.remove(i);
+				firelistImg.remove(i);
+				world.waterscore++;
+			}*/
 		}
 		//System.out.println(waterList.size());
 		/*for(int i=1;i<waterList.size();i++) {
