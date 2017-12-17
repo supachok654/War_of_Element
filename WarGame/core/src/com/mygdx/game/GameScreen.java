@@ -38,6 +38,8 @@ public class GameScreen extends ScreenAdapter {
 
 	private List<Texture> waterlistImg;
 	private List<Texture> firelistImg;
+	private int nextWaterMinion;
+	private int nextFireMinion;
 
 
 	//private LinkWaterMinion<> linkWaterMinion;
@@ -85,12 +87,14 @@ public class GameScreen extends ScreenAdapter {
         font.draw(batch,"FIRE : " + world.getFireScore(),960,770);
         for(int i=0;i<waterlistImg.size();i++) {
         	batch.draw(waterlistImg.get(i),waterList.get(i).getPosition().x,waterList.get(i).getPosition().y);
-        	batch.draw(waterlistImg.get(i),150,750);
+        	nextWaterMinion = i;
         }
+        batch.draw(waterlistImg.get(nextWaterMinion),150,750);
         for(int i=0;i<firelistImg.size();i++) {
         	batch.draw(firelistImg.get(i),fireList.get(i).getPosition().x,fireList.get(i).getPosition().y);
-        	batch.draw(firelistImg.get(i),1100,750);
+        	nextFireMinion = i;
         }
+        batch.draw(firelistImg.get(nextFireMinion),1100,750);
         batch.end();
     }
 	private void update(float delta) {
