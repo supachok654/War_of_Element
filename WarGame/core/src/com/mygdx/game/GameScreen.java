@@ -39,7 +39,8 @@ public class GameScreen extends ScreenAdapter {
 	//private List<Texture> rectangleList;
 	private int nextWaterMinion;
 	private int nextFireMinion;
-
+	private int delay1;
+	private int delay2;
 
 	//private LinkWaterMinion<> linkWaterMinion;
 	private BitmapFont font;
@@ -85,19 +86,20 @@ public class GameScreen extends ScreenAdapter {
         Vector2 pos_fire = fire.getPosition();
         batch.draw(waterImg, pos_water.x, pos_water.y);
         batch.draw(fireImg, pos_fire.x, pos_fire.y);
-        font.draw(batch,"WATER : " + world.getWaterScore(),300,770);
-        font.draw(batch,"FIRE : " + world.getFireScore(),960,770);
+        font.draw(batch,"WATER : " + world.getWaterHp(),300,770);
+        font.draw(batch,"FIRE : " + world.getFireHp(),960,770);
         for(int i=0;i<waterlistImg.size();i++) {
         	batch.draw(waterlistImg.get(i),waterList.get(i).getPosition().x,waterList.get(i).getPosition().y);
         	//getBounds(waterList.get(i).getPosition().x,waterList.get(i).getPosition().y,waterlistImg.get(i).getWidth(),waterlistImg.get(i).getHeight());
-        	new Rectangle(waterList.get(i).getPosition().x,waterList.get(i).getPosition().y,waterlistImg.get(i).getWidth(),waterlistImg.get(i).getHeight());
+        	//new Rectangle(waterList.get(i).getPosition().x,waterList.get(i).getPosition().y,waterlistImg.get(i).getWidth(),waterlistImg.get(i).getHeight());
         	nextWaterMinion = i;
         }
         batch.draw(waterlistImg.get(nextWaterMinion),150,750);
         for(int i=0;i<firelistImg.size();i++) {
         	batch.draw(firelistImg.get(i),fireList.get(i).getPosition().x,fireList.get(i).getPosition().y);
+        	
         	//getBounds(fireList.get(i).getPosition().x,fireList.get(i).getPosition().y,firelistImg.get(i).getWidth(),firelistImg.get(i).getHeight());
-        	new Rectangle(fireList.get(i).getPosition().x,fireList.get(i).getPosition().y,firelistImg.get(i).getWidth(),firelistImg.get(i).getHeight());
+        	// new Rectangle(fireList.get(i).getPosition().x,fireList.get(i).getPosition().y,firelistImg.get(i).getWidth(),firelistImg.get(i).getHeight());
         	nextFireMinion = i;
         }
         batch.draw(firelistImg.get(nextFireMinion),1100,750);
@@ -124,18 +126,24 @@ public class GameScreen extends ScreenAdapter {
 			
 			fire.moveDown();
 		}
+		delay1++;
+		delay2++;
 		if(Gdx.input.isKeyJustPressed(Keys.D)) {
 
 			int tmp = rand.nextInt(8)+1;
+			//System.out.println(delay1);
 			//System.out.println(tmp);
-			waterList.get(waterList.size()-1).setCheck(1);
-			waterList.add(new WaterMinion(water,tmp));
-			if(tmp <= 4)
-				waterlistImg.add(new Texture("WaterMinion1.png"));
-			else if(tmp <= 7)
-				waterlistImg.add(new Texture("WaterMinion2.png"));
-			else if(tmp == 8)
-				waterlistImg.add(new Texture("WaterBall.png"));
+			if(delay1 > 50) {
+				delay1 = 0;
+				waterList.get(waterList.size()-1).setCheck(1);
+				waterList.add(new WaterMinion(water,tmp));
+				if(tmp <= 4)
+					waterlistImg.add(new Texture("WaterMinion1.png"));
+				else if(tmp <= 7)
+					waterlistImg.add(new Texture("WaterMinion2.png"));
+				else if(tmp == 8)
+					waterlistImg.add(new Texture("WaterBall.png"));
+			}
 			//int randomNum_1 = ThreadLocalRandom.current().nextInt(1,8);
 			//System.out.println(randomNum_1);
 			/*if(randomNum_1 < 4) {
@@ -159,14 +167,17 @@ public class GameScreen extends ScreenAdapter {
 
 			int tmp = rand.nextInt(8)+1;
 			//System.out.println(tmp);
-			fireList.get(fireList.size()-1).setCheck(1);
-			fireList.add(new FireMinion(fire,tmp));
-			if(tmp <= 4)
-				firelistImg.add(new Texture("FireMinion1.png"));
-			else if(tmp <= 7)
-				firelistImg.add(new Texture("FireMinion2.png"));
-			else if(tmp == 8)
-				firelistImg.add(new Texture("FireBall.png"));
+			if(delay2 > 50) {
+				delay2 = 0;
+				fireList.get(fireList.size()-1).setCheck(1);
+				fireList.add(new FireMinion(fire,tmp));
+				if(tmp <= 4)
+					firelistImg.add(new Texture("FireMinion1.png"));
+				else if(tmp <= 7)
+					firelistImg.add(new Texture("FireMinion2.png"));
+				else if(tmp == 8)
+					firelistImg.add(new Texture("FireBall.png"));
+			}
 			//int randomNum_2 = ThreadLocalRandom.current().nextInt(1,8);
 			/*if(randomNum_2 < 4) {
 				fireList.add(new FireMinion(fire));
@@ -185,11 +196,20 @@ public class GameScreen extends ScreenAdapter {
 			}*/
 		}
 		for(int i=0;i<waterList.size();i++) {
+        	if(waterList.get(i).getPosition().x == fire.getPosition().x && waterList.get(i).getPosition().y == fire.getPosition().y) {
+        			world.fireHP--;
+        	}
+		}
+		for(int i=0;i<fireList.size();i++) {
+        	if(fireList.get(i).getPosition().x == water.getPosition().x && fireList.get(i).getPosition().y == water.getPosition().y) {
+        			world.waterHP--;
+        	}
+		}
+		for(int i=0;i<waterList.size();i++) {
 			waterList.get(i).update();
 			if(waterList.get(i).getPosition().x>1280) {
 				waterList.remove(i);
 				waterlistImg.remove(i);
-				world.waterscore++;
 			}
 			/*if(waterList.get(i).getPosition().x<0) {
 				waterList.remove(i);
@@ -202,7 +222,6 @@ public class GameScreen extends ScreenAdapter {
 			if(fireList.get(i).getPosition().x<0) {
 				fireList.remove(i);
 				firelistImg.remove(i);
-				world.firescore++;
 				
 			}
 			/*if(fireList.get(i).getPosition().x>1280) {

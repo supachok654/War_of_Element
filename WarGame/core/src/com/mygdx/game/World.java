@@ -8,23 +8,23 @@ public class World {
 	private Water water;
 	private Fire fire;
     private WarGame warofelementsGame;
-    public int waterscore;
-    public int firescore;
+    public int waterHP;
+    public int fireHP;
  
     World(WarGame warofelementsGame) {
         this.warofelementsGame = warofelementsGame;
  
         water = new Water(10,70);
         fire = new Fire(1230, 70);
-        waterscore = 0;
-        firescore = 0;
+        waterHP = 15;
+        fireHP = 15;
     }
-    public int getWaterScore() {
-    	return waterscore;
+    public int getWaterHp() {
+    	return waterHP;
     }
     
-    public int getFireScore() {
-    	return firescore; 
+    public int getFireHp() {
+    	return fireHP; 
     }
  
     Water getWater() {
