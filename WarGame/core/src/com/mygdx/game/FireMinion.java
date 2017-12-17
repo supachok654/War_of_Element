@@ -12,10 +12,18 @@ public class FireMinion {
 	private Fire fire;
 	public FireMinion(Fire fire,int level) {
 		this.fire = fire;
-		pos = new Vector2(fire.getPosition().x+50,fire.getPosition().y);
-		if(level <= 4) speed = 5;
-		else if(level <= 7) speed = 8;
-		else if(level == 8) speed = 15;
+		if(level <= 4) {
+			pos = new Vector2(fire.getPosition().x+50,fire.getPosition().y);
+			speed = 5;
+		}
+		else if(level <= 7) {
+			pos = new Vector2(fire.getPosition().x+75,fire.getPosition().y);
+			speed = 8;
+		}
+		else if(level == 8) {
+			pos = new Vector2(fire.getPosition().x+100,fire.getPosition().y);
+			speed = 15;
+		}
 	}
 	public Vector2 getPosition() {
 		return pos;
