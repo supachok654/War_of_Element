@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.TimeUnit;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
@@ -66,7 +67,7 @@ public class GameScreen extends ScreenAdapter {
 		waterlistImg = new ArrayList();
 		waterlistImg.add(new Texture("pacman.png"));
 		firelistImg.add(new Texture("pacman.png"));
-		rand = new Random();
+		//rand = new Random();
 		//w = new LinkWaterMinion(this);
 		//Background = new Texture(Gdx.files.internal("background.jpg"));
 	}
@@ -113,14 +114,15 @@ public class GameScreen extends ScreenAdapter {
 		}
 		if(Gdx.input.isKeyJustPressed(Keys.D)) {
 
-			int tmp = rand.nextInt(2)+1;
+			int tmp = rand.nextInt(8)+1;
+			System.out.println(tmp);
 			waterList.get(waterList.size()-1).setCheck(1);
 			waterList.add(new WaterMinion(water,tmp));
-			if(tmp ==1)
+			if(tmp <= 4)
 				waterlistImg.add(new Texture("pacman.png"));
-			else if(tmp ==2)
+			else if(tmp <= 7)
 				waterlistImg.add(new Texture("bigpacman.png"));
-			else if(tmp ==3)
+			else if(tmp == 8)
 				waterlistImg.add(new Texture("extrapacman.png"));
 			//int randomNum_1 = ThreadLocalRandom.current().nextInt(1,8);
 			//System.out.println(randomNum_1);
@@ -143,14 +145,15 @@ public class GameScreen extends ScreenAdapter {
 		}
 		if(Gdx.input.isKeyJustPressed(Keys.LEFT)) {
 
-			int tmp = rand.nextInt(2)+1;
+			int tmp = rand.nextInt(8)+1;
+			System.out.println(tmp);
 			fireList.get(fireList.size()-1).setCheck(1);
 			fireList.add(new FireMinion(fire,tmp));
-			if(tmp ==1)
+			if(tmp <= 4)
 				firelistImg.add(new Texture("pacman.png"));
-			else if(tmp ==2)
+			else if(tmp <= 7)
 				firelistImg.add(new Texture("bigpacman.png"));
-			else if(tmp ==3)
+			else if(tmp == 8)
 				firelistImg.add(new Texture("extrapacman.png"));
 			//int randomNum_2 = ThreadLocalRandom.current().nextInt(1,8);
 			/*if(randomNum_2 < 4) {
