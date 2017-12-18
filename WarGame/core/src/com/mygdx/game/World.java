@@ -66,7 +66,7 @@ public class World {
             int tmp = rand.nextInt(8) + 1;
             //System.out.println(delay1);
             //System.out.println(tmp);
-            if (delay1 > 50) {
+            if (delay1 > 25) {
                 delay1 = 0;
                 waterList.get(waterList.size() - 1).setCheck(1);
                 waterList.add(new WaterMinion(water, tmp));
@@ -82,7 +82,7 @@ public class World {
 
             int tmp = rand.nextInt(8) + 1;
             //System.out.println(tmp);
-            if (delay2 > 50) {
+            if (delay2 > 25) {
                 delay2 = 0;
                 fireList.get(fireList.size() - 1).setCheck(1);
                 fireList.add(new FireMinion(fire, tmp));
