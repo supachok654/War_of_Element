@@ -10,8 +10,10 @@ public class FireMinion {
 	private int  check = 0;
 	private int  speed;
 	private Fire fire;
+	public int level;
 	public FireMinion(Fire fire,int level) {
 		this.fire = fire;
+		level = level;
 		if(level <= 4) {
 			pos = new Vector2(fire.getPosition().x+50,fire.getPosition().y);
 			speed = 5;
