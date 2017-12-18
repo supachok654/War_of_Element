@@ -18,15 +18,15 @@ public class WaterMinion {
 		System.out.println(level);
 		if(level <= 4) {
 			pos = new Vector2(water.getPosition().x-50,water.getPosition().y);
-			speed = 5;
+			speed = 10;
 		}
 		else if(level <= 7) {
 			pos = new Vector2(water.getPosition().x-75,water.getPosition().y);
-			speed = 8;
+			speed = 15;
 		}
 		else if(level == 8) {
 			pos = new Vector2(water.getPosition().x-100,water.getPosition().y);
-			speed = 15;
+			speed = 20;
 		}
 	}
 	public Vector2 getPosition() {

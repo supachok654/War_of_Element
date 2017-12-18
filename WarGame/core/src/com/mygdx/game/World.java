@@ -28,8 +28,8 @@ public class World {
  
         water = new Water(10,70);
         fire = new Fire(1230, 70);
-        waterHP = 15;
-        fireHP = 15;
+        waterHP = 5;
+        fireHP = 5;
         waterMinion = new WaterMinion(water,1);
         fireMinion = new FireMinion(fire,1);
         waterList = new ArrayList();

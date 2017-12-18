@@ -16,15 +16,15 @@ public class FireMinion {
 		this.level = level;
 		if(level <= 4) {
 			pos = new Vector2(fire.getPosition().x+50,fire.getPosition().y);
-			speed = 5;
+			speed = 10;
 		}
 		else if(level <= 7) {
 			pos = new Vector2(fire.getPosition().x+75,fire.getPosition().y);
-			speed = 8;
+			speed = 15;
 		}
 		else if(level == 8) {
 			pos = new Vector2(fire.getPosition().x+100,fire.getPosition().y);
-			speed = 15;
+			speed = 20;
 		}
 	}
 	public Vector2 getPosition() {

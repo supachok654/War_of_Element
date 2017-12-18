@@ -32,8 +32,8 @@ public class WorldRenderer {
         waterminionImg = new Texture("WaterMinion1.png");
         fireminionImg = new Texture("FireMinion1.png");
         Background = new Texture("background.jpg");
-        //fireWin = new Texture("FireWin.png");
-        //waterWin = new Texture("WaterWin.png");
+        fireWin = new Texture("FireWin.png");
+        waterWin = new Texture("WaterWin.png");
         font = new BitmapFont();
         firelistImg = new ArrayList();
         waterlistImg = new ArrayList();
@@ -96,6 +96,7 @@ public class WorldRenderer {
         if(gameOver == true && world.fireHP == 0) {
         	batch.begin();
         	batch.draw(waterWin,0,0);
+        	
         	batch.end();
         }
         if(gameOver == true && world.waterHP == 0) {
