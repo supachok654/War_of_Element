@@ -14,7 +14,8 @@ public class WaterMinion {
 	public int level;
 	public WaterMinion(Water water,int level) {
 		this.water = water;
-		level = level;
+		this.level = level;
+		System.out.println(level);
 		if(level <= 4) {
 			pos = new Vector2(water.getPosition().x-50,water.getPosition().y);
 			speed = 5;
