@@ -37,8 +37,6 @@ public class WorldRenderer {
         font = new BitmapFont();
         firelistImg = new ArrayList();
         waterlistImg = new ArrayList();
-        //waterlistImg.add(new Texture("WaterMinion1.png"));
-        //firelistImg.add(new Texture("FireMinion1.png"));
     }
     private void update(){
         waterlistImg.clear();
@@ -78,16 +76,11 @@ public class WorldRenderer {
         	font.draw(batch,"FIRE : " + world.getFireHp(),960,770);
         	for(int i=0;i<world.waterList.size();i++) {
         		batch.draw(waterlistImg.get(i),world.waterList.get(i).getPosition().x,world.waterList.get(i).getPosition().y);
-            //getBounds(waterList.get(i).getPosition().x,waterList.get(i).getPosition().y,waterlistImg.get(i).getWidth(),waterlistImg.get(i).getHeight());
-            //new Rectangle(waterList.get(i).getPosition().x,waterList.get(i).getPosition().y,waterlistImg.get(i).getWidth(),waterlistImg.get(i).getHeight());
         		nextWaterMinion = i;
         	}
         	batch.draw(waterlistImg.get(nextWaterMinion),150,750);
         	for(int i=0;i<world.fireList.size();i++) {
         		batch.draw(firelistImg.get(i),world.fireList.get(i).getPosition().x,world.fireList.get(i).getPosition().y);
-
-            //getBounds(fireList.get(i).getPosition().x,fireList.get(i).getPosition().y,firelistImg.get(i).getWidth(),firelistImg.get(i).getHeight());
-            // new Rectangle(fireList.get(i).getPosition().x,fireList.get(i).getPosition().y,firelistImg.get(i).getWidth(),firelistImg.get(i).getHeight());
         		nextFireMinion = i;
         	}
         	batch.draw(firelistImg.get(nextFireMinion),1100,750);

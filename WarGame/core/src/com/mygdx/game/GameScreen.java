@@ -23,19 +23,12 @@ public class GameScreen extends ScreenAdapter {
 	private WarGame warofelementsGame;
 	public World world;
 	public WorldRenderer worldRenderer;
-	//private LinkWaterMinion<> linkWaterMinion;
 	private BitmapFont font;
 	public GameScreen(WarGame warofelementsGame) {
 		this.warofelementsGame = warofelementsGame;
 		world = new World(warofelementsGame);
 		worldRenderer = new WorldRenderer(warofelementsGame,world);
 	}
-	/*public static Rectangle getBounds(float x,float y,int width, int heigth) {
-		return new Rectangle(x,y,width,heigth);
-	}
-	private boolean collision(float x,float y,int width,int heigth) {
-		return GameScreen.getBounds(x,y,width,heigth).intersects(getBounds());
-	}*/
 	@Override
     public void render(float delta) {
         Gdx.gl.glClearColor(.50f, .230f, .50f, 1);

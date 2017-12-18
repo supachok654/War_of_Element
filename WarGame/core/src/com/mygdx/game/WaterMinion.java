@@ -42,8 +42,5 @@ public class WaterMinion {
 		else
 			pos.y =  water.getPosition().y;
 			
-		/*if(Gdx.input.isKeyJustPressed(Keys.D)) {
-			check =1;
-		}*/
 	}
 }

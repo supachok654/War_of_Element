@@ -39,9 +39,6 @@ public class FireMinion {
 		else
 			pos.y =  fire.getPosition().y;
 			
-		/*if(Gdx.input.isKeyJustPressed(Keys.D)) {
-			check =1;
-		}*/
 	}
 }
 

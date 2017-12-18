@@ -64,34 +64,19 @@ public class World {
         if (Gdx.input.isKeyJustPressed(Input.Keys.D)) {
 
             int tmp = rand.nextInt(8) + 1;
-            //System.out.println(delay1);
-            //System.out.println(tmp);
             if (delay1 > 25) {
                 delay1 = 0;
                 waterList.get(waterList.size() - 1).setCheck(1);
                 waterList.add(new WaterMinion(water, tmp));
-               /* if (tmp <= 4)
-                    waterlistImg.add(new Texture("WaterMinion1.png"));
-                else if (tmp <= 7)
-                    waterlistImg.add(new Texture("WaterMinion2.png"));
-                else if (tmp == 8)
-                    waterlistImg.add(new Texture("WaterBall.png"));*/
             }
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
 
             int tmp = rand.nextInt(8) + 1;
-            //System.out.println(tmp);
             if (delay2 > 25) {
                 delay2 = 0;
                 fireList.get(fireList.size() - 1).setCheck(1);
                 fireList.add(new FireMinion(fire, tmp));
-                /*if (tmp <= 4)
-                    firelistImg.add(new Texture("FireMinion1.png"));
-                else if (tmp <= 7)
-                    firelistImg.add(new Texture("FireMinion2.png"));
-                else if (tmp == 8)
-                    firelistImg.add(new Texture("FireBall.png"));*/
             }
         }
         for (int i = 0; i < waterList.size(); i++) {
@@ -108,14 +93,12 @@ public class World {
             waterList.get(i).update();
             if (waterList.get(i).getPosition().x > 1280) {
                 waterList.remove(i);
-                //waterlistImg.remove(i);
             }
         }
         for (int i = 0; i < fireList.size(); i++) {
             fireList.get(i).update();
             if (fireList.get(i).getPosition().x < 0) {
                 fireList.remove(i);
-                //firelistImg.remove(i);
 
             }
 
